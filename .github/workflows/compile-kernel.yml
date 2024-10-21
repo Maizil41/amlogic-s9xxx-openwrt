@@ -74,7 +74,7 @@ on:
         type: choice
         options:
           - -ophub
-          - -yourname
+          - -mutiara
 
 env:
   TZ: America/New_York
