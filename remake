@@ -670,7 +670,7 @@ make_image() {
 
     # Set OpenWrt filename
     [[ -d "${out_path}" ]] || mkdir -p ${out_path}
-    openwrt_filename="openwrt${source_codename}_${PLATFORM}_${board}_k${kernel}_$(date +"%Y.%m.%d").img"
+    openwrt_filename="mutiara-wrt${}_${PLATFORM}_${board}_k${kernel}_$(date +"%Y.%m.%d").img"
     build_image_file="${out_path}/${openwrt_filename}"
     rm -f ${build_image_file}
 
@@ -918,8 +918,8 @@ refactor_rootfs() {
     sed -i "s|option label 'ROOTFS'|option uuid '${ROOTFS_UUID}'|g" etc/config/fstab
 
     # Set the keyword for tags in Releases
-    [[ -n "${source_codename}" ]] && {
-        sed -i "s|option amlogic_firmware_tag.*|option amlogic_firmware_tag '${source_codename}'|g" etc/config/amlogic
+    [[ -n "${}" ]] && {
+        sed -i "s|option amlogic_firmware_tag.*|option amlogic_firmware_tag '${}'|g" etc/config/amlogic
     }
 
     # Modify the default script to [ bash ] for [ cpustat ]
