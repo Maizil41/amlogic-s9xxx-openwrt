@@ -11,6 +11,6 @@ config amlogic 'config'
 	option amlogic_shared_fstype 'btrfs'
 
 config settings 'armcpu'
-	option governor0 'schedutil'
+	option governor0 'ondemand'
 	option minfreq0 '1000000'
-	option maxfreq0 '1800000'
+	option maxfreq0 '1512000'
