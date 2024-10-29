@@ -1,0 +1,9 @@
+#!/bin/sh
+
+chown -R root:root /
+
+chown -R mariadb:mariadb /srv/.
+
+sudo service mysqld start
+
+rm -f /etc/uci-defaults/99-init-mariadb
