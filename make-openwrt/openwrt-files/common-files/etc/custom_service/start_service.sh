@@ -77,13 +77,6 @@ openvfd_boxid="15"
     echo "[$(date +"%Y.%m.%d.%H:%M:%S")] The fan control service enabled successfully." >>${custom_log}
 }
 
-# Automatic expansion of the third and fourth partitions
-todo_rootfs_resize="/root/.todo_rootfs_resize"
-[[ -f "${todo_rootfs_resize}" && "$(cat ${todo_rootfs_resize} 2>/dev/null | xargs)" == "yes" ]] && {
-    openwrt-tf 2>/dev/null &&
-        echo "[$(date +"%Y.%m.%d.%H:%M:%S")] Automatically expand the partition successfully." >>${custom_log}
-}
-
 # Set swap check file
 sawp_check_file="${PARTITION_PATH}/.swap/swapfile"
 [[ -f "${sawp_check_file}" ]] && {
