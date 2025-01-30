@@ -1,0 +1,23 @@
+#!/bin/sh
+# Setup permission
+opkg install /root/*.ipk --force-reinstall
+rm -f /root/*.ipk
+chmod -R 755 /lib/*
+chmod -R 755 /etc/profile.d/*
+chmod 755 /etc/mutiara-wrt
+chmod 755 /etc/profile
+chown -R root:root .
+
+(echo "mutiara"; sleep 1; echo "mutiara") | passwd > /dev/null
+
+uci set ttyd.@ttyd[0].command='/bin/bash --login'
+uci commit ttyd
+
+uci set system.@system[0].hostname='mutiara-wrt'
+uci set system.@system[0].timezone='WIB-7'
+uci set system.@system[0].zonename='Asia/Jakarta'
+uci commit system
+
+sed -i 's/option check_signature/# option check_signature/g' /etc/opkg.conf
+echo "src/gz mutiara_wrt https://raw.githubusercontent.com/maizil41/mutiara-wrt-opkg/main/generic" >> /etc/opkg/customfeeds.conf
+
