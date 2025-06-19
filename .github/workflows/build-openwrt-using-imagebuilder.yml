@@ -1,12 +1,12 @@
 #=====================================================================================
 # https://github.com/ophub/amlogic-s9xxx-openwrt
-# Description:   Build OpenWrt with Image Builder
+# Description:   Build OpenWrt using ImageBuilder
 # Instructions:  https://openwrt.org/docs/guide-user/additional-software/imagebuilder
 # Download from: https://downloads.openwrt.org/releases
 #                https://downloads.immortalwrt.org/releases
 #=====================================================================================
 
-name: Build OpenWrt with ImageBuilder
+name: Build OpenWrt using ImageBuilder
 
 on:
   repository_dispatch:
@@ -33,10 +33,13 @@ on:
           - s912-x92_s922x_s922x-ct2000_s922x-reva_seewo-sv21_smart-am40_smart-am60_station-m1_sw799_swan1-w28
           - tanix-tx6_tb-ls3399_tn3399_tpm312_tqc-a01_tvi3315a_vplus_wxy-oec_xiaobao_yskj_zcube1-max_zk-r39a_zysj
           - a311d
+          - a311d-oes
           - alark35-3500
+          - anas3035
           - beikeyun
           - chainedbox
           - crrc
+          - dc-a588
           - dg3399
           - dg-tn3568
           - dlfr100
@@ -163,6 +166,8 @@ on:
           - smart-am40
           - smart-am60
           - station-m1
+          - station-m2
+          - sv-33a6x
           - swan1-w28
           - sw799
           - tanix-tx6
@@ -181,7 +186,7 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.1.y_6.12.y"
+        default: "5.15.y_6.1.y"
         type: choice
         options:
           - 5.4.y
@@ -247,7 +252,7 @@ jobs:
         run: |
           docker rmi $(docker images -q) 2>/dev/null
           [[ -n "${AGENT_TOOLSDIRECTORY}" ]] && sudo rm -rf "${AGENT_TOOLSDIRECTORY}"
-          sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android 2>/dev/null
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android 2>/dev/null
           sudo swapoff -a
           sudo rm -f /swapfile /mnt/swapfile
           sudo -E apt-get -y update
